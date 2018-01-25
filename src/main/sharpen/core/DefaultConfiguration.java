@@ -22,7 +22,7 @@ package sharpen.core;
 
 public class DefaultConfiguration extends Configuration {
 
-	DefaultConfiguration(String runtimeTypeName) {
+	public DefaultConfiguration(String runtimeTypeName) {
 		super(runtimeTypeName);
 		
 		setUpPrimitiveMappings();
