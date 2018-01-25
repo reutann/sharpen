@@ -73,17 +73,24 @@ public class ConfigurationFactory {
 		String configJar = NameUtility.unqualify(configurationClass)+ ".sharpenconfig.jar";
 
 		try {
-			URI currentDirectoryURI = getCurrentDirectoryURI();
+      		URI currentDirectoryURI = getCurrentDirectoryURI();
 			File currentDirectory = new File(currentDirectoryURI);
 			Path configPath = Paths.get(currentDirectory.getPath(), configJar);
-			URI jarURI = configPath.toUri();
+      		URI jarURI = configPath.toUri();
 			File configFile = configPath.toFile();
-			if(!configFile.exists()){
-				progressMonitor.subTask("Configuration library " + configJar + " not found");
-				return null;
+			if(configFile.exists()){
+				return createConfigFromJar(jarURI, configurationClass, runtimeTypeName);
 			}
 
-			return createConfigFromJar(jarURI, configurationClass, runtimeTypeName);
+			String currentWorkingDir = System.getProperty("user.dir");
+			File newConfigFile = new File(currentWorkingDir, configFile.getName());
+			if (newConfigFile.exists()) {
+				jarURI = newConfigFile.toURI();
+				return createConfigFromJar(jarURI, configurationClass, runtimeTypeName);
+			}
+
+			progressMonitor.subTask("Configuration library " + configJar + " not found");
+			return null;
 		}
 		catch (Exception ex){
 			throw new Exception("External configuration library error : " + ex.getMessage(), ex);
