@@ -304,11 +304,11 @@ public abstract class Configuration {
 		mapMethod("java.lang.String.valueOf", "ToString");
 	}
 
-	private void mapJavaLangClassProperty(String methodName, String propertyName) {
+	public void mapJavaLangClassProperty(String methodName, String propertyName) {
 		mapProperty("java.lang.Class." + methodName, propertyName);
 	}
 	
-	private void mapJavaLangClassMethod(String methodName, String newMethodName) {
+	public void mapJavaLangClassMethod(String methodName, String newMethodName) {
 		mapMethod("java.lang.Class." + methodName, newMethodName);
 	}
 	

@@ -33,7 +33,7 @@ public class PascalCaseIdentifiersNamingStrategy extends NamingStrategy {
 			: name.substring(0, nameStart+1) + toPascalCase(name.substring(nameStart+1)); 
 	}
 
-	protected String toPascalCase(String name) {
+	public static String toPascalCase(String name) {
 		return name.length() > 1
 			? name.substring(0, 1).toUpperCase() + name.substring(1)
 			: name.toUpperCase();
