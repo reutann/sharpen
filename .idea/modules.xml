@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Sharpen.iml" filepath="$PROJECT_DIR$/.idea/Sharpen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sharpencore.iml" filepath="$PROJECT_DIR$/sharpencore.iml" />
     </modules>
   </component>
 </project>

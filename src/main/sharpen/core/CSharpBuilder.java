@@ -3881,7 +3881,7 @@ public class CSharpBuilder extends ASTVisitor {
 		if (override) {
 			return isFinal ? CSMethodModifier.Sealed : modifierIfNewAnnotationNotApplied(method, CSMethodModifier.Override);
 		}
-		return isFinal || _currentType.isSealed() ? CSMethodModifier.None : CSMethodModifier.Virtual;
+		return CSMethodModifier.None;
 	}
 
 	private CSMethodModifier modifierIfNewAnnotationNotApplied(MethodDeclaration method, CSMethodModifier modifier) {
@@ -3968,7 +3968,7 @@ public class CSharpBuilder extends ASTVisitor {
 			return CSVisibility.Public;
 		}
 
-		CSVisibility defaultVisibility = CSVisibility.Internal;
+		CSVisibility defaultVisibility = CSVisibility.Public;
 		if (node.getParent() instanceof TypeDeclaration && ((TypeDeclaration)node.getParent()).isInterface()) {
 			defaultVisibility = CSVisibility.Public;
 		} else if (node instanceof EnumConstantDeclaration) {
@@ -3979,7 +3979,7 @@ public class CSharpBuilder extends ASTVisitor {
 	}
 
 	CSVisibility mapVisibility(int modifiers) {
-		return mapVisibility(modifiers, CSVisibility.Internal);
+		return mapVisibility(modifiers, CSVisibility.Public);
 	}
 
 	CSVisibility mapVisibility(int modifiers, CSVisibility defaultVisibility) {

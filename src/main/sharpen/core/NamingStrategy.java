@@ -32,7 +32,7 @@ public class NamingStrategy {
 	static {
 		keywords("as", "base", "bool", "checked", "decimal", 
 				"event", "explicit", "extern", "false", "fixed", 
-				"foreach", "implicit", "in", "internal", "is", 
+				"foreach", "implicit", "in", "internal", "is",
 				"namespace", "null", "object", "operator", "out", 
 				"override", "params", "readonly", "ref", "sbyte", 
 				"sealed", "sizeof", "stackalloc", "string", "struct", 

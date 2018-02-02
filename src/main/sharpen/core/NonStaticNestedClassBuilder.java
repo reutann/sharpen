@@ -73,7 +73,7 @@ public class NonStaticNestedClassBuilder extends AbstractNestedClassBuilder {
 
 	private void introduceConstructor() {
 		final CSConstructor ctor = new CSConstructor();
-		ctor.visibility(CSVisibility.Internal);
+		ctor.visibility(CSVisibility.Public);
 		patchConstructor(ctor);
 		_convertedType.addMember(ctor);
 	}
