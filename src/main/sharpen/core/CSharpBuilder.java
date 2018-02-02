@@ -111,9 +111,6 @@ public class CSharpBuilder extends ASTVisitor {
 		_ast = my(CompilationUnit.class);
 		_resolver = my(ASTResolver.class);
 		_compilationUnit = my(CSCompilationUnit.class);
-		if(!_configuration.sharpenNamespace().equals("nonamespace")) {
-			_compilationUnit.addUsing(new CSUsing (_configuration.sharpenNamespace()));
-		}
 	}
 
 	protected CSharpBuilder(CSharpBuilder other) {

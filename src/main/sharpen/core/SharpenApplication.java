@@ -49,7 +49,7 @@ public class SharpenApplication {
 				return;
 			}
 			System.err.println("Configuration Class: " + _args.configurationClass);
-			System.err.println("Configuration Class: " +_args.runtimeTypeName);
+			System.err.println("Runtime Type Name: " +_args.runtimeTypeName);
 			Configuration config = ConfigurationFactory.newExternalConfiguration(_args.configurationClass, _args.runtimeTypeName, newProgressMonitor());
 			if(config == null)
 				config = ConfigurationFactory.newConfiguration(_args.configurationClass, _args.runtimeTypeName);

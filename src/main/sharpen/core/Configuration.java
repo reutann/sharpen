@@ -145,11 +145,8 @@ public abstract class Configuration {
 	    mapMethod("java.lang.AbstractStringBuilder.append", "Append");  
 	    mapMethod("java.lang.AbstractStringBuilder.insert", "Insert");
 	    
-	    mapMethod("java.lang.StringBuffer.deleteCharAt", runtimeMethod("deleteCharAt"));
-	    mapMethod("java.lang.AbstractStringBuilder.deleteCharAt", runtimeMethod("deleteCharAt"));
-	    mapMethod("java.lang.StringBuffer.setCharAt", runtimeMethod("setCharAt"));
-	    mapMethod("java.lang.AbstractStringBuilder.setCharAt", runtimeMethod("setCharAt"));
-	    
+
+
 	    mapProperty("java.lang.StringBuffer.setLength", "Length");
 	    mapProperty("java.lang.AbstractStringBuilder.setLength", "Length");
 	    
@@ -165,18 +162,10 @@ public abstract class Configuration {
 	    mapMethod("java.lang.String.replace", "Replace");
 	    mapMethod("java.lang.String.startsWith", "StartsWith");
 	    mapMethod("java.lang.String.endsWith", "EndsWith");
-		mapMethod("java.lang.String.substring", runtimeMethod("substring"));
-	    mapIndexer("java.lang.String.charAt");
+		mapIndexer("java.lang.String.charAt");
 	    mapIndexer("java.lang.CharSequence.charAt");
-	    mapMethod("java.lang.String.getChars", runtimeMethod("getCharsForString"));
-	    mapMethod("java.lang.String.getBytes", runtimeMethod("getBytesForString"));
-	    mapMethod("java.lang.String.equalsIgnoreCase", runtimeMethod("equalsIgnoreCase"));
-	    mapMethod("java.lang.String.valueOf", runtimeMethod("getStringValueOf"));
-	    mapMethod("java.lang.String.String(byte[])", runtimeMethod("getStringForBytes"));
-	    mapMethod("java.lang.String.String(byte[],int,int)", runtimeMethod("getStringForBytes"));
-	    mapMethod("java.lang.String.String(byte[],int,int,java.lang.String)", runtimeMethod("getStringForBytes"));
-	    mapMethod("java.lang.String.String(byte[],java.lang.String)", runtimeMethod("getStringForBytes"));
-	    mapProperty("java.lang.String.length", "Length");
+
+		mapProperty("java.lang.String.length", "Length");
 	    mapProperty("java.lang.CharSequence.length", "Length");
 	}
 
@@ -243,6 +232,34 @@ public abstract class Configuration {
 		this._maxColumns = maxColumns;
 	}
 
+	public void enableRuntimeMethods() {
+		mapMethod("java.lang.reflect.Array.getLength", runtimeMethod("GetArrayLength"));
+		mapMethod("java.lang.reflect.Array.get", runtimeMethod("GetArrayValue"));
+		mapMethod("java.lang.reflect.Array.set", runtimeMethod("SetArrayValue"));
+		mapMethod("java.lang.reflect.Method.getParameterTypes", runtimeMethod("GetParameterTypes"));
+
+		mapJavaLangClassMethod("getDeclaredField", runtimeMethod("GetDeclaredField"));
+		mapJavaLangClassMethod("getDeclaredFields", runtimeMethod("GetDeclaredFields"));
+		mapJavaLangClassMethod("getDeclaredMethod", runtimeMethod("GetDeclaredMethod"));
+		mapJavaLangClassMethod("getDeclaredMethods", runtimeMethod("GetDeclaredMethods"));
+		mapJavaLangClassMethod("forName", runtimeMethod("GetType"));
+
+		mapMethod("java.lang.StringBuffer.deleteCharAt", runtimeMethod("deleteCharAt"));
+		mapMethod("java.lang.AbstractStringBuilder.deleteCharAt", runtimeMethod("deleteCharAt"));
+		mapMethod("java.lang.StringBuffer.setCharAt", runtimeMethod("setCharAt"));
+		mapMethod("java.lang.AbstractStringBuilder.setCharAt", runtimeMethod("setCharAt"));
+
+		mapMethod("java.lang.String.substring", runtimeMethod("substring"));
+		mapMethod("java.lang.String.getChars", runtimeMethod("getCharsForString"));
+		mapMethod("java.lang.String.getBytes", runtimeMethod("getBytesForString"));
+		mapMethod("java.lang.String.equalsIgnoreCase", runtimeMethod("equalsIgnoreCase"));
+		mapMethod("java.lang.String.valueOf", runtimeMethod("getStringValueOf"));
+		mapMethod("java.lang.String.String(byte[])", runtimeMethod("getStringForBytes"));
+		mapMethod("java.lang.String.String(byte[],int,int)", runtimeMethod("getStringForBytes"));
+		mapMethod("java.lang.String.String(byte[],int,int,java.lang.String)", runtimeMethod("getStringForBytes"));
+		mapMethod("java.lang.String.String(byte[],java.lang.String)", runtimeMethod("getStringForBytes"));
+	}
+
 	public void enableNativeTypeSystem() {
 		_nativeTypeSystem = true;
 		
@@ -252,9 +269,7 @@ public abstract class Configuration {
 		mapType("java.lang.IllegalAccessException", "System.MemberAccessException");
 		
 //		mapType("java.lang.reflect.Array", "System.Array");
-		mapMethod("java.lang.reflect.Array.getLength", runtimeMethod("GetArrayLength"));
-		mapMethod("java.lang.reflect.Array.get", runtimeMethod("GetArrayValue"));
-		mapMethod("java.lang.reflect.Array.set", runtimeMethod("SetArrayValue"));
+
 		mapMethod("java.lang.reflect.Array.newInstance", "System.Array.CreateInstance");
 		
 		mapMethod("java.lang.Object.getClass", "GetType");
@@ -267,14 +282,9 @@ public abstract class Configuration {
 		mapJavaLangClassProperty("isInterface", "IsInterface");
 		mapJavaLangClassMethod("isInstance", "IsInstanceOfType");
 		mapJavaLangClassMethod("newInstance", "System.Activator.CreateInstance");
-		mapJavaLangClassMethod("forName", runtimeMethod("GetType"));
 		mapJavaLangClassMethod("getComponentType", "GetElementType");
 		mapJavaLangClassMethod("getField", "GetField");
 		mapJavaLangClassMethod("getFields", "GetFields");
-		mapJavaLangClassMethod("getDeclaredField", runtimeMethod("GetDeclaredField"));		
-		mapJavaLangClassMethod("getDeclaredFields", runtimeMethod("GetDeclaredFields"));
-		mapJavaLangClassMethod("getDeclaredMethod", runtimeMethod("GetDeclaredMethod"));
-		mapJavaLangClassMethod("getDeclaredMethods", runtimeMethod("GetDeclaredMethods"));
 		mapJavaLangClassMethod("isAssignableFrom", "IsAssignableFrom");
 		
 		mapProperty("java.lang.reflect.Member.getName", "Name");
@@ -288,7 +298,6 @@ public abstract class Configuration {
 		mapType("java.lang.reflect.Method", "System.Reflection.MethodInfo");
 		mapProperty("java.lang.reflect.Method.getName", "Name");
 		mapProperty("java.lang.reflect.Method.getReturnType", "ReturnType");
-		mapMethod("java.lang.reflect.Method.getParameterTypes", runtimeMethod("GetParameterTypes"));
 		removeMethod("java.lang.reflect.AccessibleObject.setAccessible");
 		mapType("java.lang.reflect.Constructor", "System.Reflection.ConstructorInfo");
 		

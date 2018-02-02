@@ -128,6 +128,8 @@ public class DefaultConfiguration extends Configuration {
 	    mapIndexer("java.util.List.get");
 	    mapMethod("java.util.Collection.addAll", collectionRuntimeMethod("AddAll"));
 	    mapMethod("java.util.Collection.toArray", collectionRuntimeMethod("ToArray"));
+
+	    setUpAnnotationMappings();
 	    
 	    if (mapIteratorToEnumerator()) {
 	    	mapMethod("java.lang.Iterable.iterator", "GetEnumerator");
@@ -167,7 +169,7 @@ public class DefaultConfiguration extends Configuration {
 		mapType("java.util.Hashtable", "System.Collections.Hashtable");
 	    mapProperty("java.util.Dictionary.keys", "Keys");
 	    mapProperty("java.util.Dictionary.size", "Count");
-	    
+
 		// JUnit
 		mapNamespace("junit.framework", "NUnit.Framework");
 		mapMethod("junit.framework.Assert.assertEquals", "NUnit.Framework.Assert.AreEqual");
